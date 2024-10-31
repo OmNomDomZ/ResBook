@@ -1,4 +1,4 @@
-package v.rabetskii;
+package v.rabetskii.resource;
 
 import java.util.UUID;
 
@@ -11,7 +11,7 @@ public class Resource {
         this.name = name;
     }
 
-    public UUID getUuid() {
+    public UUID getID() {
         return uuid;
     }
 

@@ -1,4 +1,4 @@
-package v.rabetskii;
+package v.rabetskii.user;
 
 import java.util.UUID;
 
@@ -8,20 +8,16 @@ public class User {
     private String email;
     private String role;
 
-    public User createUser(String name, String email, String role) {
-        User user = new User();
-        user.uuid = UUID.randomUUID();
-        user.name = name;
-        user.email = email;
-        user.role = role;
-        return user;
+    public User() {}
+
+    public User(String name, String email, String role) {
+        this.uuid = UUID.randomUUID();
+        this.name = name;
+        this.email = email;
+        this.role = role;
     }
 
-    public void deleteUser() {
-
-    }
-
-    public UUID getUuid() {
+    public UUID getID() {
         return uuid;
     }
 
@@ -47,5 +43,10 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{name='" + name + "', email='" + email + "', role='" + role + "'}";
     }
 }
