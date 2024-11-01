@@ -1,22 +1,38 @@
 package v.rabetskii.datacontrol;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import v.rabetskii.user.User;
 
-public class DataControl {
-    public void UploadData(){
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = "{\"name\":\"Alex\", \"email\":\"alex@gmail.com\", \"role\":\"client\"}";
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
 
-        try {
-            User user = mapper.readValue(jsonString, User.class);
-            System.out.println(user);
+public class DataControl<T> {
+    private final String filename;
+    ObjectMapper mapper = new ObjectMapper();
 
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+    public DataControl(String filename) {
+        this.filename = filename;
+    }
+
+    public void loadData(Map<UUID, T> objectMap) {
+        try (FileReader fileReader = new FileReader(filename)) {
+            Map<UUID, T> dataFromFile = mapper.readValue(fileReader, new TypeReference<>() {});
+            objectMap.putAll(dataFromFile);
+            System.out.println("Load data from " + filename);
+        } catch (IOException e) {
+            throw new RuntimeException("Error Loading data", e);
         }
+    }
 
+    public void saveData(Map<UUID, T> objectMap) {
+        try (FileWriter fileWriter = new FileWriter(filename)) {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(fileWriter, objectMap);
+            System.out.println("Saved data to " + filename);
+        } catch (IOException e) {
+            throw new RuntimeException("Error saving data", e);
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Booking {
-    private UUID uuid;
+    private final UUID uuid;
     private UUID userID;
     private UUID resourceID;
     private LocalDateTime startTime;
@@ -59,5 +59,10 @@ public class Booking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{userID='" + userID + "', resourceID='" + resourceID + "', startTime='" + startTime + "' ', endTime='" + endTime + "'}";
     }
 }

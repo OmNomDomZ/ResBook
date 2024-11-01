@@ -22,4 +22,8 @@ public class UserService {
     public void deleteUser(UUID id) {
         users.remove(id);
     }
+
+    public Map<UUID, User> getUsers() {
+        return users;
+    }
 }

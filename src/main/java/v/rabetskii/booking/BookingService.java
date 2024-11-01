@@ -1,7 +1,5 @@
 package v.rabetskii.booking;
 
-import v.rabetskii.user.User;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -23,5 +21,9 @@ public class BookingService {
 
     public void deleteUser(UUID id) {
         bookings.remove(id);
+    }
+
+    public Map<UUID, Booking> getBookings() {
+        return bookings;
     }
 }
