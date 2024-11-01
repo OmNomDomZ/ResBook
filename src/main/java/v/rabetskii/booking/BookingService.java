@@ -10,19 +10,19 @@ public class BookingService {
 
     public void createBooking(Booking booking) {
         bookings.put(booking.getID(), booking);
-        System.out.println("Бронирование подтверждено для пользователя" + booking.getUserID() + "на ресурс" +
-                        booking.getResourceID() + "с" + booking.getStartTime() + "до" + booking.getEndTime());
+        System.out.println("Бронирование подтверждено для пользователя " + booking.getUserID() + " на ресурс " +
+                        booking.getResourceID() + " с " + booking.getStartTime() + " до " + booking.getEndTime());
     }
 
-    public Booking getUser(UUID id) {
+    public Booking getBooking(UUID id) {
         return bookings.get(id);
     }
 
-    public void updateUser(Booking booking){
+    public void updateBooking(Booking booking){
         bookings.put(booking.getID(), booking);
     }
 
-    public void deleteUser(UUID id) {
+    public void deleteBooking(UUID id) {
         bookings.remove(id);
     }
 
@@ -32,7 +32,7 @@ public class BookingService {
 
     public boolean isResourceAvailable(UUID resourceId, LocalDateTime startTime, LocalDateTime endTime) {
         for (Booking booking : bookings.values()) {
-            if (booking.getID().equals(resourceId)) {
+            if (booking.getResourceID().equals(resourceId)) {
                 LocalDateTime existingStart = booking.getStartTime();
                 LocalDateTime existingEnd = booking.getEndTime();
 
