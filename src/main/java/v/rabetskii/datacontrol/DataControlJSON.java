@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
-public class DataControl<T> {
+public class DataControlJSON<T> {
     private final String filename;
     ObjectMapper mapper = new ObjectMapper();
 
-    public DataControl(String filename) {
+    public DataControlJSON(String filename) {
         this.filename = filename;
     }
 
