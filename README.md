@@ -28,4 +28,4 @@
 ### 2. Запуск проекта
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/username/resbook.git
+   git clone https://github.com/OmNomDomZ/ResBook.git
